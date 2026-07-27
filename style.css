@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* Global */
 
 * {
@@ -25,148 +24,12 @@ body {
     padding: 20px;
 }
 
+.content {
+    flex: 1;
+    padding: 25px;
+}
+
 /* Sidebar */
-
-.sidebar h2 {
-    color: white;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.sidebar a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    transition: 0.3s;
-}
-
-/* Cards */
-
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-/* Summary Orders */
-
-.summary-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    text-align: center;
-}
-
-/* Dashboard Boards */
-
-.boards-container {
-    display: flex;
-    gap: 20px;
-}
-
-/* Forms */
-
-input {
-    padding: 10px;
-}
-
-button {
-    padding: 10px 15px;
-}
-
-/* Create Order */
-
-.order-sections {
-    display: flex;
-    gap: 30px;
-}
-
-/* Order Display */
-
-.order-box {
-    background: #eeeeee;
-    padding: 12px;
-}
-
-/* Staff & Kitchen Order Grids */
-
-#staffOrders,
-#kitchenOrders {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-}
-
-/* Search Section */
-
-.search-section {
-    display: flex;
-    gap: 10px;
-}
-
-/* Order Status Colours */
-
-.pending {
-    color: gray;
-}
-
-.preparing {
-    color: orange;
-}
-
-.serving {
-    color: green;
-}
-
-.served {
-    color: red;
-}
-
-/* FIFO Queue */
-
-#nextOrder {
-    margin-top: 15px;
-}
-
-/* Responsive Design */
-
-@media (max-width: 900px) {
-    .layout {
-        flex-direction: column;
-    }
-=======
-/* =========================
-   Global
-========================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-}
-
-/* =========================
-   Layout
-========================= */
-
-.layout {
-    display: flex;
-    min-height: 100vh;
-}
-
-.sidebar {
-    width: 250px;
-    background: #800000;
-    padding: 20px;
-}
 
 .sidebar h2 {
     color: white;
@@ -194,51 +57,42 @@ body {
     font-weight: bold;
 }
 
-.sidebar-header{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-    margin-bottom:30px;
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
 }
 
-.utp-logo{
-    width:60px;
-    height:60px;
-    object-fit:contain;
+.utp-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
 }
 
-.sidebar-header h2{
-    color:white;
-    margin:0;
-    font-size:24px;
-    line-height:1.2;
+.sidebar-header h2 {
+    color: white;
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.2;
 }
 
-.content {
-    flex: 1;
-    padding: 25px;
-}
-
-/* =========================
-   Cards
-========================= */
+/* Cards */
 
 .card {
     background: white;
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card h2 {
     margin-bottom: 15px;
 }
 
-/* =========================
-   Summary orders
-========================= */
+/* Summary Orders */
 
 .summary-card {
     display: flex;
@@ -264,9 +118,7 @@ body {
     line-height: 1;
 }
 
-/* =========================
-   Dashboard Boards
-========================= */
+/* Dashboard Boards */
 
 .boards-container {
     display: flex;
@@ -300,9 +152,7 @@ body {
     color: #155724;
 }
 
-/* =========================
-   Forms
-========================= */
+/* Forms */
 
 input {
     padding: 10px;
@@ -323,9 +173,21 @@ button:hover {
     background: #a00000;
 }
 
-/* =========================
-   Create Order
-========================= */
+/* Create Order */
+
+.order-sections {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.order-column {
+    flex: 1;
+}
+
+.order-column h3 {
+    margin-bottom: 15px;
+}
 
 .item-row {
     display: flex;
@@ -341,9 +203,7 @@ h3 {
     margin-bottom: 10px;
 }
 
-/* =========================
-   Order Display
-========================= */
+/* Order Display */
 
 .order-box {
     background: #eeeeee;
@@ -372,19 +232,7 @@ h3 {
     margin-bottom: 4px;
 }
 
-.order-sections{
-    display:flex;
-    gap:30px;
-    align-items:flex-start;
-}
-
-.order-column{
-    flex:1;
-}
-
-.order-column h3{
-    margin-bottom:15px;
-}
+/* Staff & Kitchen Order Grids */
 
 #staffOrders,
 #kitchenOrders {
@@ -406,9 +254,17 @@ h3 {
     margin-bottom: 10px;
 }
 
-/* =========================
-   Search Result
-========================= */
+/* Search Section */
+
+.search-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-section input {
+    width: 250px;
+}
 
 #searchResult {
     margin-top: 15px;
@@ -418,22 +274,10 @@ h3 {
     background: #e8f5e9;
 }
 
-.search-section{
-    display:flex;
-    gap:10px;
-    margin-bottom:20px;
-}
+/* Queue Information */
 
-.search-section input{
-    width:250px;
-}
-
-/* =========================
-   Queue Information
-========================= */
-
-#pendingOrders,
-#totalOrders {
+#totalOrders,
+#pendingOrders {
     font-size: 60px;
     font-weight: bold;
     color: #800000;
@@ -441,9 +285,7 @@ h3 {
     line-height: 1;
 }
 
-/* =========================
-   Status Colours
-========================= */
+/* Status Colours */
 
 .pending {
     color: gray;
@@ -465,19 +307,23 @@ h3 {
     font-weight: bold;
 }
 
-/* =========================
-   FIFO Next Order
-========================= */
+/* FIFO Queue */
 
 #nextOrder {
     margin-top: 15px;
 }
 
-/* =========================
-   Responsive
-========================= */
+/* Responsive Design */
 
-@media(max-width: 900px) {
+@media (max-width: 1200px) {
+
+    #staffOrders,
+    #kitchenOrders {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
 
     .layout {
         flex-direction: column;
@@ -491,6 +337,10 @@ h3 {
         flex-direction: column;
     }
 
+    .order-sections {
+        flex-direction: column;
+    }
+
     .item-row {
         flex-direction: column;
     }
@@ -500,19 +350,18 @@ h3 {
     }
 }
 
-@media (max-width: 1200px) {
-
-    #staffOrders,
-    #kitchenOrders {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
 @media (max-width: 768px) {
 
     #staffOrders,
     #kitchenOrders {
         grid-template-columns: repeat(1, 1fr);
     }
->>>>>>> 531219215ec08ad739a171eace6c230f140591b3
+
+    .search-section {
+        flex-direction: column;
+    }
+
+    .search-section input {
+        width: 100%;
+    }
 }
