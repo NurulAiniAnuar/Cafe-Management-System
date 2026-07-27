@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,4 +136,143 @@
 </script>
 
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff View</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <h2>Cafe System</h2>
+
+        <a href="index.html">Main Dashboard</a>
+        <a href="staff.html" class="active">Staff View</a>
+        <a href="kitchen.html">Kitchen View</a>
+
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+        <!-- Create Order -->
+       <div class="card">
+
+            <h2>Create Order</h2>
+
+            <div class="order-sections">
+
+                <!-- Food -->
+                <div class="order-column">
+
+                    <h3>Food Items</h3>
+
+                    <div id="foodContainer">
+
+                        <div class="item-row">
+                            <input
+                                type="text"
+                                class="foodName"
+                                placeholder="Food Item">
+
+                            <input
+                                type="number"
+                                class="foodQty"
+                                placeholder="Qty">
+                        </div>
+
+                    </div>
+
+                    <button onclick="addFoodRow()">
+                        + Add Food
+                    </button>
+
+                </div>
+
+                <!-- Beverage -->
+                <div class="order-column">
+
+                    <h3>Beverages</h3>
+
+                    <div id="beverageContainer">
+
+                        <div class="item-row">
+                            <input
+                                type="text"
+                                class="beverageName"
+                                placeholder="Beverage">
+
+                            <input
+                                type="number"
+                                class="beverageQty"
+                                placeholder="Qty">
+                        </div>
+
+                    </div>
+
+                    <button onclick="addBeverageRow()">
+                        + Add Beverage
+                    </button>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <button onclick="addOrder()">
+                Create Order
+            </button>
+
+        </div>
+
+        <!-- Current Orders + Find Order -->
+        <div class="card">
+
+            <h2>Current Orders</h2>
+
+            <div class="search-section">
+
+                <input
+                    type="number"
+                    id="searchOrderId"
+                    placeholder="Enter Order ID"
+                    onkeyup="loadStaffOrders()">
+
+                <button onclick="loadStaffOrders()">
+                    Search
+                </button>
+
+                <button onclick="clearSearch()">
+                    Show All
+                </button>
+
+            </div>
+
+            <div id="staffOrders"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+    loadStaffOrders();
+    setInterval(loadStaffOrders, 1000);
+</script>
+
+</body>
+>>>>>>> 531219215ec08ad739a171eace6c230f140591b3
 </html>
