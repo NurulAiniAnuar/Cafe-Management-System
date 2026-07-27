@@ -1,0 +1,377 @@
+/* =========================
+   Global
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+/* =========================
+   Layout
+========================= */
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background: #800000;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar a.active {
+    background: white;
+    color: #800000;
+    font-weight: bold;
+}
+
+.sidebar-header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    margin-bottom:30px;
+}
+
+.utp-logo{
+    width:60px;
+    height:60px;
+    object-fit:contain;
+}
+
+.sidebar-header h2{
+    color:white;
+    margin:0;
+    font-size:24px;
+    line-height:1.2;
+}
+
+.content {
+    flex: 1;
+    padding: 25px;
+}
+
+/* =========================
+   Cards
+========================= */
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+    margin-bottom: 15px;
+}
+
+/* =========================
+   Summary orders
+========================= */
+
+.summary-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.summary-box {
+    flex: 1;
+}
+
+.summary-box h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.summary-box p {
+    font-size: 60px;
+    font-weight: bold;
+    color: #800000;
+    margin: 0;
+    line-height: 1;
+}
+
+/* =========================
+   Dashboard Boards
+========================= */
+
+.boards-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.board-card {
+    flex: 1;
+    min-height: 400px;
+}
+
+.board-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-order {
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#preparingBoard .order-box {
+    background: #fff3cd;
+    color: #856404;
+}
+
+#servingBoard .order-box {
+    background: #d4edda;
+    color: #155724;
+}
+
+/* =========================
+   Forms
+========================= */
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button {
+    padding: 10px 15px;
+    background: #800000;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #a00000;
+}
+
+/* =========================
+   Create Order
+========================= */
+
+.item-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.item-row input {
+    width: 220px;
+}
+
+h3 {
+    margin-bottom: 10px;
+}
+
+/* =========================
+   Order Display
+========================= */
+
+.order-box {
+    background: #eeeeee;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.order-number {
+    font-size: 22px;
+    font-weight: bold;
+    color: #800000;
+    margin-bottom: 10px;
+}
+
+.order-box p {
+    margin-bottom: 6px;
+}
+
+.order-box ul {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.order-box li {
+    margin-bottom: 4px;
+}
+
+.order-sections{
+    display:flex;
+    gap:30px;
+    align-items:flex-start;
+}
+
+.order-column{
+    flex:1;
+}
+
+.order-column h3{
+    margin-bottom:15px;
+}
+
+#staffOrders,
+#kitchenOrders {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+#staffOrders .order-box,
+#kitchenOrders .order-box {
+    min-height: 250px;
+    padding: 15px;
+}
+
+#staffOrders .order-number,
+#kitchenOrders .order-number {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* =========================
+   Search Result
+========================= */
+
+#searchResult {
+    margin-top: 15px;
+}
+
+#searchResult .order-box {
+    background: #e8f5e9;
+}
+
+.search-section{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.search-section input{
+    width:250px;
+}
+
+/* =========================
+   Queue Information
+========================= */
+
+#pendingOrders,
+#totalOrders {
+    font-size: 60px;
+    font-weight: bold;
+    color: #800000;
+    margin: 0;
+    line-height: 1;
+}
+
+/* =========================
+   Status Colours
+========================= */
+
+.pending {
+    color: gray;
+    font-weight: bold;
+}
+
+.preparing {
+    color: orange;
+    font-weight: bold;
+}
+
+.serving {
+    color: green;
+    font-weight: bold;
+}
+
+.served {
+    color: red;
+    font-weight: bold;
+}
+
+/* =========================
+   FIFO Next Order
+========================= */
+
+#nextOrder {
+    margin-top: 15px;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media(max-width: 900px) {
+
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .boards-container {
+        flex-direction: column;
+    }
+
+    .item-row {
+        flex-direction: column;
+    }
+
+    .item-row input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1200px) {
+
+    #staffOrders,
+    #kitchenOrders {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+
+    #staffOrders,
+    #kitchenOrders {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
