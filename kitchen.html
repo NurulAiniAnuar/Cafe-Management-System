@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,65 +58,3 @@
 </script>
 
 </body>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kitchen View</title>
-
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="layout">
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <h2>Cafe System</h2>
-
-        <a href="index.html">Main Dashboard</a>
-        <a href="staff.html">Staff View</a>
-        <a href="kitchen.html" class="active">Kitchen View</a>
-    </div>
-
-    <!-- Content -->
-    <div class="content">
-
-        <!-- FIFO Queue -->
-        <div class="card">
-
-            <h2>Queue Control</h2>
-
-            <button onclick="showNextOrder()">
-                Show Next Order
-            </button>
-
-            <div id="nextOrder"></div>
-
-        </div>
-
-        <!-- Kitchen Orders -->
-        <div class="card">
-
-            <h2>Kitchen Orders</h2>
-
-            <div id="kitchenOrders"></div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<script src="script.js"></script>
-
-<script>
-    loadKitchenOrders();
-    setInterval(loadKitchenOrders, 1000);
-</script>
-
-</body>
->>>>>>> 531219215ec08ad739a171eace6c230f140591b3
-</html>
