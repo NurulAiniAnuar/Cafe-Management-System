@@ -1,7 +1,4 @@
-// =========================
-// ORDER MANAGEMENT SYSTEM
-// Circular Queue + Order Lookup
-// =========================
+/* Order Storage */
 
 function getOrders() {
     return JSON.parse(localStorage.getItem("orders")) || [];
@@ -11,9 +8,7 @@ function saveOrders(orders) {
     localStorage.setItem("orders", JSON.stringify(orders));
 }
 
-// =========================
-// PlaceOrder()
-// =========================
+/* Place Order */
 
 function addOrder() {
 
@@ -27,7 +22,7 @@ function addOrder() {
         let qtyField =
             document.querySelectorAll(".foodQty")[index];
 
-        if(item.value.trim() !== "") {
+        if (item.value.trim() !== "") {
 
             foods.push({
                 name: item.value.trim(),
@@ -41,7 +36,7 @@ function addOrder() {
         let qtyField =
             document.querySelectorAll(".beverageQty")[index];
 
-        if(item.value.trim() !== "") {
+        if (item.value.trim() !== "") {
 
             beverages.push({
                 name: item.value.trim(),
@@ -53,6 +48,7 @@ function addOrder() {
     let nextId = 1001;
 
     if (orders.length > 0) {
+
         nextId =
             Math.max(...orders.map(o => o.id)) + 1;
     }
@@ -65,7 +61,6 @@ function addOrder() {
         status: "Pending"
     };
 
-    // Circular Enqueue concept
     orders.push(order);
 
     saveOrders(orders);
@@ -73,9 +68,7 @@ function addOrder() {
     location.reload();
 }
 
-// =========================
-// Search Order
-// =========================
+/* Order Search */
 
 function findOrder(orderId) {
 
@@ -98,38 +91,31 @@ function clearSearch() {
     loadStaffOrders();
 }
 
-// =========================
-// FIFO Queue Visualization
-// =========================
+/* FIFO Queue */
 
 function showNextOrder() {
 
     let orders = getOrders();
 
-    let pendingOrders =
-        orders.filter(
-            o => o.status === "Pending"
-        );
+    let pendingOrders = orders.filter(
+        o => o.status === "Pending"
+    );
 
-    if(pendingOrders.length === 0) {
+    if (pendingOrders.length === 0) {
 
-        document.getElementById(
-            "nextOrder"
-        ).innerHTML =
+        document.getElementById("nextOrder").innerHTML =
             "No pending orders";
 
         return;
     }
 
     pendingOrders.sort(
-        (a,b) => a.timestamp - b.timestamp
+        (a, b) => a.timestamp - b.timestamp
     );
 
     let next = pendingOrders[0];
 
-    document.getElementById(
-        "nextOrder"
-    ).innerHTML = `
+    document.getElementById("nextOrder").innerHTML = `
         <div class="order-box">
             <strong>Next FIFO Order:</strong>
             #${next.id}
@@ -137,9 +123,7 @@ function showNextOrder() {
     `;
 }
 
-// =========================
-// Kitchen Actions
-// =========================
+/* Kitchen Actions */
 
 function setPreparing(id) {
 
@@ -148,7 +132,7 @@ function setPreparing(id) {
     let order =
         orders.find(o => o.id == id);
 
-    if(order) {
+    if (order) {
         order.status = "Preparing";
     }
 
@@ -164,7 +148,7 @@ function setServing(id) {
     let order =
         orders.find(o => o.id == id);
 
-    if(order) {
+    if (order) {
         order.status = "Serving";
     }
 
@@ -173,10 +157,6 @@ function setServing(id) {
     loadKitchenOrders();
 }
 
-// =========================
-// ServeNextOrder()
-// =========================
-
 function markServed(id) {
 
     let orders = getOrders();
@@ -184,7 +164,7 @@ function markServed(id) {
     let order =
         orders.find(o => o.id == id);
 
-    if(order) {
+    if (order) {
         order.status = "Served";
     }
 
@@ -193,9 +173,7 @@ function markServed(id) {
     loadStaffOrders();
 }
 
-// =========================
-// Dashboard
-// =========================
+/* Dashboard */
 
 function loadDashboard() {
 
@@ -210,35 +188,32 @@ function loadDashboard() {
     let totalOrders =
         document.getElementById("totalOrders");
 
-    if(!preparingBoard) return;
+    if (!preparingBoard) return;
 
     preparingBoard.innerHTML = "";
     servingBoard.innerHTML = "";
 
-    let activeOrders =
-        orders.filter(
-            order => order.status !== "Served"
-        );
+    let activeOrders = orders.filter(
+        order => order.status !== "Served"
+    );
 
     totalOrders.textContent =
         activeOrders.length;
 
-    let pending =
-        orders.filter(
-            o => o.status === "Pending"
-        ).length;
+    let pending = orders.filter(
+        o => o.status === "Pending"
+    ).length;
 
     let pendingElement =
         document.getElementById("pendingOrders");
 
-    if(pendingElement){
-        pendingElement.textContent =
-            pending;
+    if (pendingElement) {
+        pendingElement.textContent = pending;
     }
 
     activeOrders.forEach(order => {
 
-        if(order.status === "Preparing") {
+        if (order.status === "Preparing") {
 
             preparingBoard.innerHTML += `
                 <div class="order-box dashboard-order">
@@ -247,7 +222,7 @@ function loadDashboard() {
             `;
         }
 
-        if(order.status === "Serving") {
+        if (order.status === "Serving") {
 
             servingBoard.innerHTML += `
                 <div class="order-box dashboard-order">
@@ -258,9 +233,7 @@ function loadDashboard() {
     });
 }
 
-// =========================
-// Staff View
-// =========================
+/* Staff View */
 
 function loadStaffOrders() {
 
@@ -284,20 +257,11 @@ function loadStaffOrders() {
     }
 
     let queueOrders = orders
-        .filter(order =>
-            order.status === "Pending"
-        )
-        .sort(
-            (a, b) =>
-            a.timestamp - b.timestamp
-        );
+        .filter(order => order.status === "Pending")
+        .sort((a, b) => a.timestamp - b.timestamp);
 
     let filteredOrders = orders
-
-        .filter(order =>
-            order.status !== "Served"
-        )
-
+        .filter(order => order.status !== "Served")
         .filter(order => {
 
             if (searchValue === "") {
@@ -306,9 +270,7 @@ function loadStaffOrders() {
 
             return String(order.id)
                 .includes(searchValue);
-
         })
-
         .slice(0, 10);
 
     if (filteredOrders.length === 0) {
@@ -330,127 +292,114 @@ function loadStaffOrders() {
             );
 
         container.innerHTML += `
+            <div class="order-box">
 
-        <div class="order-box">
+                <div class="order-number">
+                    #${order.id}
+                </div>
 
-            <div class="order-number">
-                #${order.id}
-            </div>
+                <p><strong>Foods:</strong></p>
 
-            <p><strong>Foods:</strong></p>
+                <ul>
+                    ${(order.foods || [])
+                        .map(food =>
+                            `<li>${food.name} x${food.qty}</li>`
+                        )
+                        .join("")}
+                </ul>
 
-            <ul>
-                ${(order.foods || [])
-                    .map(food =>
-                        `<li>${food.name} x${food.qty}</li>`
-                    )
-                    .join("")}
-            </ul>
+                <p><strong>Beverages:</strong></p>
 
-            <p><strong>Beverages:</strong></p>
+                <ul>
+                    ${(order.beverages || [])
+                        .map(drink =>
+                            `<li>${drink.name} x${drink.qty}</li>`
+                        )
+                        .join("")}
+                </ul>
 
-            <ul>
-                ${(order.beverages || [])
-                    .map(drink =>
-                        `<li>${drink.name} x${drink.qty}</li>`
-                    )
-                    .join("")}
-            </ul>
+                <p>
+                    Created:
+                    ${new Date(order.timestamp)
+                        .toLocaleTimeString()}
+                </p>
 
-            <p>
-                Created:
-                ${new Date(order.timestamp)
-                    .toLocaleTimeString()}
-            </p>
+                <p>
+                    Queue Position:
+                    ${
+                        queuePosition >= 0
+                        ? queuePosition + 1
+                        : "-"
+                    }
+                </p>
 
-            <p>
-                Queue Position:
+                <p>
+                    Status:
+                    <span class="${order.status.toLowerCase()}">
+                        ${order.status}
+                    </span>
+                </p>
+
                 ${
-                    queuePosition >= 0
-                    ? queuePosition + 1
-                    : "-"
+                    order.status === "Serving"
+                    ? `<button onclick="markServed(${order.id})">
+                           Served
+                       </button>`
+                    : ""
                 }
-            </p>
 
-            <p>
-                Status:
-                <span class="${order.status.toLowerCase()}">
-                    ${order.status}
-                </span>
-            </p>
-
-            ${
-                order.status === "Serving"
-                ?
-                `<button onclick="markServed(${order.id})">
-                    Served
-                </button>`
-                :
-                ""
-            }
-
-        </div>
-
+            </div>
         `;
     });
-
 }
 
-// =========================
-// Dynamic Food Rows
-// =========================
+/* Dynamic Food Rows */
 
 function addFoodRow() {
 
-    document
-    .getElementById("foodContainer")
-    .insertAdjacentHTML(
-        "beforeend",
-        `
-        <div class="item-row">
-            <input
-                type="text"
-                class="foodName"
-                placeholder="Food Item">
+    document.getElementById("foodContainer")
+        .insertAdjacentHTML(
+            "beforeend",
+            `
+            <div class="item-row">
+                <input
+                    type="text"
+                    class="foodName"
+                    placeholder="Food Item">
 
-            <input
-                type="number"
-                class="foodQty"
-                placeholder="Qty">
-        </div>
-        `
-    );
+                <input
+                    type="number"
+                    class="foodQty"
+                    placeholder="Qty">
+            </div>
+            `
+        );
 }
 
-// =========================
-// Dynamic Beverage Rows
-// =========================
+/* Dynamic Beverage Rows */
 
 function addBeverageRow() {
 
-    document
-    .getElementById("beverageContainer")
-    .insertAdjacentHTML(
-        "beforeend",
-        `
-        <div class="item-row">
-            <input
-                type="text"
-                class="beverageName"
-                placeholder="Beverage">
+    document.getElementById("beverageContainer")
+        .insertAdjacentHTML(
+            "beforeend",
+            `
+            <div class="item-row">
+                <input
+                    type="text"
+                    class="beverageName"
+                    placeholder="Beverage">
 
-            <input
-                type="number"
-                class="beverageQty"
-                placeholder="Qty">
-        </div>
-        `
-    );
+                <input
+                    type="number"
+                    class="beverageQty"
+                    placeholder="Qty">
+            </div>
+            `
+        );
 }
 
-// =========================
-// Kitchen View
-// =========================
+/* Kitchen View */
 
 function loadKitchenOrders() {
 
@@ -459,72 +408,64 @@ function loadKitchenOrders() {
     let container =
         document.getElementById("kitchenOrders");
 
-    if(!container) return;
+    if (!container) return;
 
     container.innerHTML = "";
 
     orders
-    .filter(order =>
-        order.status !== "Served"
-    )
-    .slice(0, 10)
+        .filter(order => order.status !== "Served")
+        .slice(0, 10)
+        .forEach(order => {
 
-    .forEach(order => {
-        container.innerHTML += `
+            container.innerHTML += `
+                <div class="order-box">
 
-        <div class="order-box">
+                    <div class="order-number">
+                        #${order.id}
+                    </div>
 
-            <div class="order-number">
-                #${order.id}
-            </div>
+                    <p><strong>Foods:</strong></p>
 
-            <p><strong>Foods:</strong></p>
+                    <ul>
+                        ${order.foods
+                            .map(food =>
+                                `<li>${food.name} x${food.qty}</li>`
+                            )
+                            .join("")}
+                    </ul>
 
-            <ul>
-                ${order.foods
-                    .map(food =>
-                        `<li>${food.name} x${food.qty}</li>`
-                    )
-                    .join("")}
-            </ul>
+                    <p><strong>Beverages:</strong></p>
 
-            <p><strong>Beverages:</strong></p>
+                    <ul>
+                        ${order.beverages
+                            .map(drink =>
+                                `<li>${drink.name} x${drink.qty}</li>`
+                            )
+                            .join("")}
+                    </ul>
 
-            <ul>
-                ${order.beverages
-                    .map(drink =>
-                        `<li>${drink.name} x${drink.qty}</li>`
-                    )
-                    .join("")}
-            </ul>
+                    <p>
+                        Status:
+                        ${order.status}
+                    </p>
 
-            <p>
-                Status:
-                ${order.status}
-            </p>
+                    ${
+                        order.status === "Pending"
+                        ? `<button onclick="setPreparing(${order.id})">
+                               Preparing
+                           </button>`
+                        : ""
+                    }
 
-            ${
-                order.status === "Pending"
-                ?
-                `<button onclick="setPreparing(${order.id})">
-                    Preparing
-                </button>`
-                :
-                ""
-            }
+                    ${
+                        order.status === "Preparing"
+                        ? `<button onclick="setServing(${order.id})">
+                               Serving
+                           </button>`
+                        : ""
+                    }
 
-            ${
-                order.status === "Preparing"
-                ?
-                `<button onclick="setServing(${order.id})">
-                    Serving
-                </button>`
-                :
-                ""
-            }
-
-        </div>
-
-        `;
-    });
+                </div>
+            `;
+        });
 }
